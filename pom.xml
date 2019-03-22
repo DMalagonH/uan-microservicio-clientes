@@ -31,5 +31,23 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+		    <groupId>org.sonarsource.scanner.maven</groupId>
+		    <artifactId>sonar-maven-plugin</artifactId>
+		    <version>3.6.0.1398</version>
+		</dependency>
 	</dependencies>
+	
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.host.url>http://34.202.8.130</sonar.host.url>
+				<sonar.login>db33af458cd25e6a0124ccef585a2fb760398c24</sonar.login>
+			</properties>
+		</profile>
+	</profiles>
 </project>
