@@ -1,4 +1,4 @@
-package co.edu.uan.microservice;
+package co.edu.uan.customer.microservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
