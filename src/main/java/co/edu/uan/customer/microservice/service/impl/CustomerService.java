@@ -1,5 +1,7 @@
 package co.edu.uan.customer.microservice.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +30,9 @@ public class CustomerService implements ICustomerService {
 	
 	@Override
 	public Customer findById(int id) throws ResourceNotFoundException {
-		if (repository.findById(id).isPresent()) {
-			return repository.findById(id).get();
+		Optional<Customer> found = repository.findById(id);		
+		if (found.isPresent()) {
+			return found.get();
 		} else {
 			throw new ResourceNotFoundException(CustomerService.ENTITYNAME, "id", Integer.toString(id));
 		}
