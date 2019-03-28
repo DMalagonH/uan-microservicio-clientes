@@ -14,6 +14,8 @@ public class CustomerService implements ICustomerService {
 	@Autowired
 	private CustomerRepository repository;
 	
+	private static final String entityName = "Customer";
+	
 	@Override
 	public Customer create(Customer customer) {
 		return repository.save(customer);
@@ -29,7 +31,7 @@ public class CustomerService implements ICustomerService {
 		if (repository.findById(id).isPresent()) {
 			return repository.findById(id).get();
 		} else {
-			throw new ResourceNotFoundException("Customer", "id", Integer.toString(id));
+			throw new ResourceNotFoundException(this.entityName, "id", Integer.toString(id));
 		}
 	}
 	
@@ -38,7 +40,7 @@ public class CustomerService implements ICustomerService {
 		if (repository.findById(customer.getId()).isPresent()) {
 			return repository.save(customer);
 		}
-		throw new ResourceNotFoundException("Customer", "id", Integer.toString(customer.getId()));
+		throw new ResourceNotFoundException(this.entityName, "id", Integer.toString(customer.getId()));
 	}
 	
 	@Override
@@ -46,7 +48,7 @@ public class CustomerService implements ICustomerService {
 		if (repository.findById(id).isPresent()) {
 			repository.deleteById(id);
 		} else {
-			throw new ResourceNotFoundException("Customer", "id", Integer.toString(id));
+			throw new ResourceNotFoundException(this.entityName, "id", Integer.toString(id));
 		}
 	}	
 	
@@ -55,6 +57,6 @@ public class CustomerService implements ICustomerService {
 		if (repository.findById(customer.getId()).isPresent()) {
 			repository.delete(customer);
 		}
-		throw new ResourceNotFoundException("Customer", "id", Integer.toString(customer.getId()));
+		throw new ResourceNotFoundException(this.entityName, "id", Integer.toString(customer.getId()));
 	}
 }
